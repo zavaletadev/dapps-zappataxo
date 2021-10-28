@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/InicioFragment">
+
+    <fragment
+        android:id="@+id/InicioFragment"
+        android:name="mx.edu.uteq.dapps.zappataxo.pub.InicioFragment"
+        android:label="Catálogo"
+        tools:layout="@layout/fragment_inicio">
+    </fragment>
+
+    <fragment
+        android:id="@+id/LoginFragment"
+        android:name="mx.edu.uteq.dapps.zappataxo.pub.LoginFragment"
+        android:label="Iniciar sesión"
+        tools:layout="@layout/fragment_login">
+        <action android:id="@+id/action_lf_to_rf"
+            app:destination="@id/RegistroFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/RegistroFragment"
+        android:name="mx.edu.uteq.dapps.zappataxo.pub.RegistroFragment"
+        android:label="Registro"
+        tools:layout="@layout/fragment_registro">
+        <action android:id="@+id/action_rf_to_lf"
+            app:destination="@id/LoginFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/CarritoFragment"
+        android:name="mx.edu.uteq.dapps.zappataxo.pub.CarritoFragment"
+        android:label="Carrito de compras"
+        tools:layout="@layout/fragment_carrito" />
+
+    <fragment
+        android:id="@+id/DetalleFragment"
+        android:name="mx.edu.uteq.dapps.zappataxo.pub.DetalleFragment"
+        android:label="Detalle de producto"
+        tools:layout="@layout/fragment_detalle" />
+</navigation>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.catalogo.CatalogoFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="En esta sección aparecerá el catálogo con la opción de agregar al carrito y a la lista de deseos visualizando el detalle de cada producto."
+            android:textSize="20sp"
+            android:layout_marginTop="50dp"
+            android:layout_marginHorizontal="10dp"/>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

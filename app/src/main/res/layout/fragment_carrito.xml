@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".pub.CarritoFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Item producto -->
+        <LinearLayout
+            android:background="#ffffff"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:elevation="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="12"
+            android:onClick="clickDetalle">
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_weight="3"
+                android:layout_height="match_parent"
+                android:src="@drawable/tennis1"
+                android:scaleType="centerInside"/>
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_weight="9"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="12">
+
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_weight="8"
+                        android:layout_height="wrap_content"
+                        android:text="Tennis 1"
+                        android:paddingStart="10dp"
+                        android:paddingVertical="10dp"
+                        android:textStyle="bold"
+                        android:textSize="18sp"/>
+
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        android:text="Cantidad"
+                        android:paddingStart="10dp"
+                        android:paddingVertical="10dp"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/colorLightText"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="12">
+
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_weight="8"
+                        android:layout_height="wrap_content"
+                        android:text="$849.00 MXN"
+                        android:paddingStart="10dp"
+                        android:paddingVertical="10dp"
+                        android:fontFamily="monospace"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryLight"
+                        android:textSize="18sp"/>
+
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:paddingStart="10dp"
+                        android:paddingVertical="10dp"
+                        android:fontFamily="monospace"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorSecondaryLightVariant"
+                        android:textSize="20sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:weightSum="12"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="2dp"
+                        android:layout_weight="8"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorLightText"
+                        android:fontFamily="sans-serif"
+                        android:textSize="18sp"
+                        android:text="Talla 27"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginVertical="10dp"/>
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_weight="4"
+                        android:weightSum="12"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:layout_width="1dp"
+                            android:layout_weight="6"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:text="+" />
+
+                        <Button
+                            android:layout_width="1dp"
+                            android:layout_weight="6"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:text="-" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <!-- Termina Item producto -->
+
+        <!-- Item producto -->
+        <LinearLayout
+            android:background="#ffffff"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:elevation="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="12"
+            android:onClick="clickDetalle">
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_weight="3"
+                android:layout_height="match_parent"
+                android:src="@drawable/tennis2"
+                android:scaleType="centerInside"/>
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_weight="9"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="12">
+
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_weight="8"
+                        android:layout_height="wrap_content"
+                        android:text="Tennis 2"
+                        android:paddingStart="10dp"
+                        android:paddingVertical="10dp"
+                        android:textStyle="bold"
+                        android:textSize="18sp"/>
+
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        android:text="Cantidad"
+                        android:paddingStart="10dp"
+                        android:paddingVertical="10dp"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/colorLightText"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="12">
+
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8"
+                        android:fontFamily="monospace"
+                        android:paddingVertical="10dp"
+                        android:paddingStart="10dp"
+                        android:text="$ 1,499.00 MXN"
+                        android:textColor="@color/colorPrimaryLight"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:paddingStart="10dp"
+                        android:paddingVertical="10dp"
+                        android:fontFamily="monospace"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorSecondaryLightVariant"
+                        android:textSize="20sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:weightSum="12"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="2dp"
+                        android:layout_weight="8"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorLightText"
+                        android:fontFamily="sans-serif"
+                        android:textSize="18sp"
+                        android:text="Talla 27"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginVertical="10dp"/>
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_weight="4"
+                        android:weightSum="12"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:layout_width="1dp"
+                            android:layout_weight="6"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:text="+" />
+
+                        <Button
+                            android:layout_width="1dp"
+                            android:layout_weight="6"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:text="-" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <!-- Termina Item producto -->
+
+        <!-- Item producto -->
+        <LinearLayout
+            android:background="#ffffff"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:elevation="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="12"
+            android:onClick="clickDetalle">
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_weight="3"
+                android:layout_height="match_parent"
+                android:src="@drawable/tennis5"
+                android:scaleType="centerInside"/>
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_weight="9"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="12">
+
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_weight="8"
+                        android:layout_height="wrap_content"
+                        android:text="Tennis 4"
+                        android:paddingStart="10dp"
+                        android:paddingVertical="10dp"
+                        android:textStyle="bold"
+                        android:textSize="18sp"/>
+
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        android:text="Cantidad"
+                        android:paddingStart="10dp"
+                        android:paddingVertical="10dp"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/colorLightText"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="12">
+
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_weight="8"
+                        android:layout_height="wrap_content"
+                        android:text="$ 729.00 MXN"
+                        android:paddingStart="10dp"
+                        android:paddingVertical="10dp"
+                        android:fontFamily="monospace"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryLight"
+                        android:textSize="18sp"/>
+
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:paddingStart="10dp"
+                        android:paddingVertical="10dp"
+                        android:fontFamily="monospace"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorSecondaryLightVariant"
+                        android:textSize="20sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:weightSum="12"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="2dp"
+                        android:layout_weight="8"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorLightText"
+                        android:fontFamily="sans-serif"
+                        android:textSize="18sp"
+                        android:text="Talla 27"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginVertical="10dp"/>
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_weight="4"
+                        android:weightSum="12"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:layout_width="1dp"
+                            android:layout_weight="6"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:text="+" />
+
+                        <Button
+                            android:layout_width="1dp"
+                            android:layout_weight="6"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:text="-" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <!-- Termina Item producto -->
+
+
+
+
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

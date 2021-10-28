@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="mx.edu.uteq.dapps.zappataxo.ui.home.HomeFragment"
+        android:label="Inicio"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_catalogo"
+        android:name="mx.edu.uteq.dapps.zappataxo.ui.catalogo.CatalogoFragment"
+        android:label="Catálogo"
+        tools:layout="@layout/fragment_catalogo" />
+
+    <fragment
+        android:id="@+id/nav_pedidos"
+        android:name="mx.edu.uteq.dapps.zappataxo.ui.pedidos.PedidosFragment"
+        android:label="Mis Pedidos"
+        tools:layout="@layout/fragment_pedidos" />
+
+    <fragment
+        android:id="@+id/nav_listadeseos"
+        android:name="mx.edu.uteq.dapps.zappataxo.ui.listadeseos.ListadeseosFragment"
+        android:label="Lista de deseos"
+        tools:layout="@layout/fragment_listadeseos" />
+
+    <fragment
+        android:id="@+id/nav_cuenta"
+        android:name="mx.edu.uteq.dapps.zappataxo.ui.cuenta.CuentaFragment"
+        android:label="Mi cuenta"
+        tools:layout="@layout/fragment_cuenta" />
+
+
+</navigation>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <!--
+    Creamos grupos con diferentes ID's para poder separar
+    visualmente los menús
+    -->
+
+    <group
+        android:id="@+id/menugroup1">
+        <item
+            android:id="@+id/nav_home"
+            android:title="Home"
+            android:icon="@drawable/ic_home" />
+    </group>
+
+    <group
+        android:id="@+id/menugroup2"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_catalogo"
+            android:icon="@drawable/ic_format_list_bulleted"
+            android:title="Catálogo" />
+
+        <item
+            android:id="@+id/nav_pedidos"
+            android:icon="@drawable/ic_checklist"
+            android:title="Mis pedidos" />
+
+    </group>
+
+    <group
+        android:checkableBehavior="single"
+        android:id="@+id/menugroup3">
+
+        <item
+            android:id="@+id/nav_listadeseos"
+            android:icon="@drawable/corazon"
+            android:title="Lista de deseos" />
+
+        <item
+            android:id="@+id/nav_cuenta"
+            android:icon="@drawable/ic_manage_accounts"
+            android:title="Mi cuenta" />
+
+    </group>
+</menu>
