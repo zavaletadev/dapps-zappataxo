@@ -36,11 +36,6 @@ public class InicioActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityInicioBinding binding;
-    private RequestQueue conexionServ;
-    private StringRequest peticionServ;
-    private SharedPreferences sharedPreferences;
-    private LinearLayout llHomeInfo;
-    private LinearLayout llLoaderIni;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,69 +49,6 @@ public class InicioActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_inicio);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
-        llHomeInfo = findViewById(R.id.ll_home_info);
-        llLoaderIni = findViewById(R.id.ll_loader_ini);
-
-        conexionServ = Volley.newRequestQueue(this);
-        sharedPreferences = getSharedPreferences("zappataxo", MODE_PRIVATE);
-
-        final String spId = sharedPreferences.getString("id", "");
-        final String spUserKey = sharedPreferences.getString("user_key", "");
-
-        peticionServ = new StringRequest(
-                Request.Method.POST,
-                "https://zavaletazea.dev/labs/awos-dapps-zappataxo/api/auth/auto_login_movil",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject objRespuesta = new JSONObject(response);
-
-                            int codigo = objRespuesta.getInt("code");
-
-                            if (codigo == 200) {
-                                startActivity(
-                                        new Intent(
-                                                InicioActivity.this,
-                                                MainActivity.class
-                                        )
-                                );
-                            }
-
-                            else {
-                                llLoaderIni.setVisibility(View.GONE);
-                                llHomeInfo.setVisibility(View.VISIBLE);
-                            }
-                        }
-
-                        catch(Exception e) {
-                            llLoaderIni.setVisibility(View.GONE);
-                            llHomeInfo.setVisibility(View.VISIBLE);
-                        }
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(InicioActivity.this, error.toString(),
-                                Toast.LENGTH_SHORT).show();
-
-                        llLoaderIni.setVisibility(View.GONE);
-                        llHomeInfo.setVisibility(View.VISIBLE);
-                    }
-                }
-        )
-        {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> parametros = new HashMap();
-                parametros.put("id", spId);
-                parametros.put("user_key", spUserKey);
-
-                return parametros;
-            }
-        };
-        conexionServ.add(peticionServ);
     }
 
     @Override
