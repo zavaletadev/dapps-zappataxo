@@ -35,5 +35,4 @@
         android:label="Mi cuenta"
         tools:layout="@layout/fragment_cuenta" />
 
-
 </navigation>

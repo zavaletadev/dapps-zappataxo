@@ -2,6 +2,7 @@ package mx.edu.uteq.dapps.zappataxo;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor spEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
+
+        sharedPreferences = getSharedPreferences("zappataxo", MODE_PRIVATE);
+        spEditor = sharedPreferences.edit();
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -84,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void salir() {
+
+
         AlertDialog.Builder alerta = new AlertDialog.Builder(MainActivity.this);
 
         alerta.setTitle("Salir de Zappataxo")
@@ -95,6 +103,9 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         //Usamos finish para quitar esta actividad
                         //del stack y no regresar sin pasar al login
+                        spEditor.remove("id");
+                        spEditor.remove(("user_key"));
+                        spEditor.commit();
                         finish();
                         startActivity(
                                 new Intent(

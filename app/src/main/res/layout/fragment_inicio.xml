@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".pub.InicioFragment"
-    android:gravity="center"
     android:background="@color/colorDarkText">
 
     <LinearLayout
@@ -13,6 +12,43 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:id="@+id/ll_loader_ini"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:src="@drawable/zapato" />
+
+            <ProgressBar
+                android:id="@+id/pb_auto_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:layout_marginVertical="20dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Iniciando app, por favor espera..."
+                android:layout_marginVertical="20dp"
+                android:textAlignment="center"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_home_info"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
         <!-- Item producto -->
         <LinearLayout
             android:background="#ffffff"
@@ -448,6 +484,8 @@
             </LinearLayout>
         </LinearLayout>
         <!-- Termina Item producto -->
+
+    </LinearLayout>
 
     </LinearLayout>
 
