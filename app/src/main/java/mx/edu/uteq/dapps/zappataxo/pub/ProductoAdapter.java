@@ -55,6 +55,15 @@ public class ProductoAdapter extends BaseAdapter {
             ImageView ivImg1 = convertView.findViewById(R.id.iv_img1);
             Picasso.get().load(producto.getString("img1")).into(ivImg1);
 
+            TextView tvProductoId = convertView.findViewById(
+                    R.id.tv_producto_id
+            );
+            tvProductoId.setText(
+                    String.valueOf(
+                            producto.getInt("producto_id")
+                    )
+            );
+
             TextView tvNombreProd = convertView.findViewById(
                     R.id.tv_nombre_prod
             );

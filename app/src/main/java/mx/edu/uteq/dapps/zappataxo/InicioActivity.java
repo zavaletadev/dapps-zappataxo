@@ -6,10 +6,13 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.navigation.NavController;
@@ -90,19 +93,26 @@ public class InicioActivity extends AppCompatActivity {
     }
 
     public void clickDetalle(View v) {
+
+        TextView tvProductoId = v.findViewById(R.id.tv_producto_id);
+        Log.d("tvProductoId", tvProductoId.getText().toString());
         NavController navController = Navigation.findNavController(
                 InicioActivity.this,
                 R.id.nav_host_fragment_content_inicio
         );
         navController.navigateUp();
-        navController.navigate(R.id.DetalleFragment);
-        getSupportActionBar().setTitle("");
+
+        Bundle datos = new Bundle();
+        datos.putString("id", tvProductoId.getText().toString());
+
+        navController.navigate(R.id.DetalleFragment, datos);
     }
 
     /*
     Clic del detalle de producto que envia al carrito
      */
     public void clickCarrito(View v) {
+
         NavController navController = Navigation.findNavController(
                 InicioActivity.this,
                 R.id.nav_host_fragment_content_inicio
