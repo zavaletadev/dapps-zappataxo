@@ -2,6 +2,7 @@ package mx.edu.uteq.dapps.zappataxo.pub;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -25,7 +26,10 @@ public class DetalleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentDetalleBinding.inflate(inflater, container, false);
+
         View root = binding.getRoot();
+
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("{{nombre_prod}}");
 
         return root;
     }

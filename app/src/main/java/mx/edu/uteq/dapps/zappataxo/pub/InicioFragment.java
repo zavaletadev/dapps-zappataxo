@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -21,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -35,6 +37,7 @@ public class InicioFragment extends Fragment {
     private FragmentInicioBinding binding;
     private RequestQueue conexionServ;
     private StringRequest peticionServ;
+    private StringRequest peticionProdServ;
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -103,6 +106,15 @@ public class InicioFragment extends Fragment {
         };
         conexionServ.add(peticionServ);
 
+        cargaProductos();
+
+        binding.srlListaProductos.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                cargaProductos();
+            }
+        });
+
         return binding.getRoot();
 
     }
@@ -111,9 +123,57 @@ public class InicioFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
+    public void cargaProductos() {
+        /*
+        Petición de productos
+         */
+        peticionProdServ = new StringRequest(
+                Request.Method.GET,
+                "https://zavaletazea.dev/labs/awos-dapps-zappataxo/api/productos/lista",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject objRespuesta = new JSONObject(response);
+
+                            if (objRespuesta.getInt("code") == 200) {
+                                JSONArray productos = objRespuesta.getJSONArray("data");
+
+                                ProductoAdapter adaptadorProductos = new ProductoAdapter(
+                                        getActivity(),
+                                        productos
+                                );
+
+                                binding.lvProductos.setAdapter(adaptadorProductos);
+                                binding.llLoaderProds.setVisibility(View.GONE);
+                                adaptadorProductos.notifyDataSetChanged();
+                            }
+
+                            binding.srlListaProductos.setRefreshing(false);
+                        }
+
+                        catch(Exception e) {
+                            Toast.makeText(getActivity(), e.getMessage(),
+                                    Toast.LENGTH_SHORT).show();
+
+                            binding.srlListaProductos.setRefreshing(false);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(), error.toString(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+        );
+        conexionServ.add(peticionProdServ);
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
     }
+
 }

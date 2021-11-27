@@ -96,7 +96,7 @@ public class InicioActivity extends AppCompatActivity {
         );
         navController.navigateUp();
         navController.navigate(R.id.DetalleFragment);
-        getSupportActionBar().setTitle("Detalle de cada producto");
+        getSupportActionBar().setTitle("");
     }
 
     /*
