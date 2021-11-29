@@ -3,13 +3,17 @@ package mx.edu.uteq.dapps.zappataxo.ui.home;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -86,6 +90,58 @@ public class HomeFragment extends Fragment {
             @Override
             public void onRefresh() {
                 cargarDatosRemotos();
+            }
+        });
+
+        /*
+        Evento click en los elementos visuales del ListView
+         */
+        binding.lvEjemploSimpleRemoto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                /*
+                El método onItemClick tiene un parámetro llamado position
+                que nos indique la posición del elemento seleccionado
+
+                Tomamos el texto del item seleccionado en función de su
+                posición
+                 */
+                String textoElementoSelccionado = binding.lvEjemploSimpleRemoto
+                        .getItemAtPosition(position).toString();
+
+                /*
+                Toast.makeText(
+                        getActivity(),
+                        "#"+position + ": " +textoElementoSelccionado,
+                        Toast.LENGTH_SHORT
+                ).show();
+                 */
+
+                /*
+                Navegamos al fragmento detalle
+                 */
+                NavController navController = Navigation.findNavController(
+                        getActivity(),
+                        R.id.nav_host_fragment_content_main
+                );
+                navController.navigateUp();
+
+                /*
+                Creamos un objeto para pasar valores d eun fragmento
+                a otro
+                 */
+                Bundle datos = new Bundle();
+                /*
+                agregamos los datos que deseamos enviar al siguiente fragmento
+                utilizando bundle y el tipo de dato
+                 */
+                datos.putInt("pos", position);
+                datos.putString("texto", textoElementoSelccionado);
+                /*
+                Envaimos los datos al siguinete fragmento
+                 */
+                navController.navigate(R.id.nav_ejemplodetalle, datos);
+
             }
         });
 

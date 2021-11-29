@@ -35,4 +35,10 @@
         android:label="Mi cuenta"
         tools:layout="@layout/fragment_cuenta" />
 
+    <fragment
+        android:id="@+id/nav_ejemplodetalle"
+        android:name="mx.edu.uteq.dapps.zappataxo.ui.home.EjemplodetalleFragment"
+        android:label="Ejemplo detalle"
+        tools:layout="@layout/fragment_ejemplodetalle" />
+
 </navigation>
