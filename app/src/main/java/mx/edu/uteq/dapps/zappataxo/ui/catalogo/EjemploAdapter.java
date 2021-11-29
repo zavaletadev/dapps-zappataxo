@@ -111,6 +111,19 @@ public class EjemploAdapter extends BaseAdapter {
         Picasso.get().load(datos.get(position).getUrlImagenProd())
                 .into(ivEjemploLista);
 
+        /*
+        Mostramos el id de cada elemento de la colección
+         */
+        TextView tvEjemploProdId = convertView.findViewById(
+                R.id.tv_ejemplo_prod_id
+        );
+        tvEjemploProdId.setText(
+                String.valueOf(
+                        datos.get(position).getProductoId()
+                )
+        );
+
+
 
         return convertView;
     }

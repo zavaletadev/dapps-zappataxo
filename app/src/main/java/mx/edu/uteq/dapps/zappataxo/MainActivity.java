@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home,
                 R.id.nav_catalogo,
+                R.id.nav_catalogo_remoto,
                 R.id.nav_pedidos,
                 R.id.nav_listadeseos,
                 R.id.nav_cuenta
@@ -117,5 +120,37 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .setCancelable(true)
                 .show();
+    }
+
+    /*
+    Click genérico para mi ListView
+     */
+    public void clickItem(View v) {
+        NavController navController = Navigation.findNavController(
+                MainActivity.this,
+                R.id.nav_host_fragment_content_main
+        );
+        navController.navigateUp();
+
+        /*
+        Tomamos el valor del elemento seleccionado
+        para pasarlo al siguiente fragmento
+         */
+        TextView tvProductoId = v.findViewById(R.id.tv_ejemplo_prod_id);
+        TextView tvNombreProd = v.findViewById(R.id.tv_ejemplo_nombre_prod);
+
+        /*
+        Pasamos los datos al siguinete fragmento usando un bundle
+         */
+        Bundle datos = new Bundle();
+        datos.putInt(
+                "pos",
+                Integer.parseInt(tvProductoId.getText().toString())
+        );
+        datos.putString(
+                "texto",
+                tvNombreProd.getText().toString()
+        );
+        navController.navigate(R.id.nav_ejemplodetalle, datos);
     }
 }
