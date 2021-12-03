@@ -1,0 +1,198 @@
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_loader_producto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="40dp">
+
+            <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:layout_marginVertical="20dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cargando info del producto, por favor espera..."
+                android:layout_marginVertical="20dp"
+                android:textAlignment="center"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_contenido_prod"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="12"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_detalle_prod_img1"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/transparente"
+                android:scaleType="centerInside"
+                app:layout_collapseMode="parallax"
+                android:elevation="8dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:orientation="vertical"
+                android:layout_marginBottom="20dp"
+                android:background="@color/colorSecondaryLightVariant"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Detalles del producto"
+                android:textSize="22sp"
+                android:layout_marginStart="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryLight"/>
+
+            <TextView
+                android:id="@+id/tv_detalle_prod_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.."
+                android:fontFamily="sans-serif-condensed-medium"
+                android:textColor="@color/colorLightText"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="12"
+                android:weightSum="12"
+                android:orientation="horizontal"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_detalle_prod_img2"
+                    android:layout_width="1dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="6"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/transparente"/>
+
+                <ImageView
+                    android:id="@+id/iv_detalle_prod_img3"
+                    android:layout_width="1dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="6"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/transparente"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:background="#ffffff"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="12">
+
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_weight="12"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="12"
+                        android:layout_weight="12"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_detalle_prod_precio"
+                            android:layout_width="1dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="9"
+                            android:fontFamily="monospace"
+                            android:paddingVertical="10dp"
+                            android:paddingStart="10dp"
+                            android:text="$849.00 MXN"
+                            android:textColor="@color/colorPrimaryLight"
+                            android:textSize="26sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="1dp"
+                            android:layout_weight="3"
+                            android:weightSum="12"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:id="@+id/iv_detalle_prod_mujer"
+                                android:layout_width="1dp"
+                                android:layout_weight="6"
+                                android:layout_height="24dp"
+                                android:src="@drawable/transparente" />
+
+                            <ImageView
+                                android:id="@+id/iv_detalle_prod_hombre"
+                                android:layout_width="1dp"
+                                android:layout_weight="6"
+                                android:layout_height="24dp"
+                                android:src="@drawable/transparente" />
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:weightSum="12"
+                        android:layout_weight="12"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:paddingVertical="10dp">
+
+                        <Spinner
+                            android:id="@+id/sp_detalle_prod_tallas"
+                            android:layout_width="1dp"
+                            android:layout_weight="10"
+                            android:layout_height="70dp"
+                            android:textColor="@color/colorLightText"
+                            android:fontFamily="sans-serif"
+                            android:textSize="18sp"/>
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/fab_agrega_carrito"
+                            android:layout_width="1dp"
+                            android:layout_weight="2"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_add_shopping_cart_light"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
+

@@ -30,6 +30,11 @@
             android:title="Catálogo remoto" />
 
         <item
+            android:id="@+id/nav_catalogo_original"
+            android:icon="@drawable/ic_format_list_bulleted"
+            android:title="Catálogo original" />
+
+        <item
             android:id="@+id/nav_pedidos"
             android:icon="@drawable/ic_checklist"
             android:title="Mis pedidos" />

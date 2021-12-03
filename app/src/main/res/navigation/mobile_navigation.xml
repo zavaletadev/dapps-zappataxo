@@ -47,4 +47,22 @@
         tools:label="Catálogo remoto"
         tools:layout="@layout/fragment_catalogoremoto" />
 
+    <fragment
+        android:id="@+id/nav_catalogo_original"
+        android:name="mx.edu.uteq.dapps.zappataxo.ui.catalogo.CatalogooriginalFragment"
+        android:label="Catálogo original"
+        tools:layout="@layout/fragment_catalogooriginal" />
+
+    <fragment
+        android:id="@+id/nav_detalle_original"
+        android:name="mx.edu.uteq.dapps.zappataxo.ui.catalogo.DetalleOriginalFragment"
+        android:label=""
+        tools:layout="@layout/fragment_detalle_original" />
+
+    <fragment
+        android:id="@+id/nav_cuenta_carrito"
+        android:name="mx.edu.uteq.dapps.zappataxo.ui.carrito.CuentaCarritoFragment"
+        tools:label="Carrito de compras"
+        tools:layout="@layout/fragment_cuenta_carrito" />
+
 </navigation>

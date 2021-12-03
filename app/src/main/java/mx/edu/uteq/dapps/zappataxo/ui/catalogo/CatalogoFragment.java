@@ -2,17 +2,37 @@ package mx.edu.uteq.dapps.zappataxo.ui.catalogo;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import mx.edu.uteq.dapps.zappataxo.R;
 import mx.edu.uteq.dapps.zappataxo.databinding.FragmentCatalogoBinding;
+import mx.edu.uteq.dapps.zappataxo.databinding.FragmentDetalleBinding;
 
 public class CatalogoFragment extends Fragment {
 

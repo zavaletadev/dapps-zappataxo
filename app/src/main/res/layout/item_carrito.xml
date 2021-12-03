@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!-- Item producto -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:elevation="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="12"
+            android:onClick="clickDetalle">
+
+            <ImageView
+                android:id="@+id/iv_carrito_img_prod"
+                android:layout_width="1dp"
+                android:layout_weight="3"
+                android:layout_height="match_parent"
+                android:src="@drawable/transparente"
+                android:scaleType="centerInside"/>
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_weight="9"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="12">
+
+                    <TextView
+                        android:id="@+id/tv_carrito_id"
+                        android:visibility="gone"
+                        android:layout_width="1dp"
+                        android:layout_weight="8"
+                        android:layout_height="wrap_content"
+                        android:text="{{carrito_id}}"
+                        android:paddingStart="10dp"
+                        android:paddingVertical="10dp"
+                        android:textStyle="bold"
+                        android:textSize="18sp"/>
+
+                    <TextView
+                        android:id="@+id/tv_carrito_nombre_prod"
+                        android:layout_width="1dp"
+                        android:layout_weight="8"
+                        android:layout_height="wrap_content"
+                        android:text="{{nombre_prod}}"
+                        android:paddingStart="10dp"
+                        android:paddingVertical="10dp"
+                        android:textStyle="bold"
+                        android:textSize="18sp"/>
+
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        android:text="Cantidad"
+                        android:paddingStart="10dp"
+                        android:paddingVertical="10dp"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/colorLightText"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="12">
+
+                    <TextView
+                        android:id="@+id/tv_carrito_precio_prod"
+                        android:layout_width="1dp"
+                        android:layout_weight="8"
+                        android:layout_height="wrap_content"
+                        android:text="{{precio_prod}} MXN"
+                        android:paddingStart="10dp"
+                        android:paddingVertical="10dp"
+                        android:fontFamily="monospace"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryLight"
+                        android:textSize="18sp"/>
+
+                    <TextView
+                        android:id="@+id/tv_carrito_cantidad_prod"
+                        android:layout_width="1dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        android:text="{{cantidad_prod}}"
+                        android:paddingStart="10dp"
+                        android:paddingVertical="10dp"
+                        android:fontFamily="monospace"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorSecondaryLightVariant"
+                        android:textSize="20sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:weightSum="12"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tv_carrito_talla_prod"
+                        android:layout_width="2dp"
+                        android:layout_weight="6"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorLightText"
+                        android:fontFamily="sans-serif"
+                        android:textSize="18sp"
+                        android:text="{{talla_prod}}"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginVertical="10dp"/>
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_weight="6"
+                        android:weightSum="12"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_mas_carrito"
+                            android:layout_width="1dp"
+                            android:layout_weight="4"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:text="+" />
+
+                        <Button
+                            android:layout_width="1dp"
+                            android:layout_weight="4"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:text="-" />
+
+                        <Button
+                            android:id="@+id/btn_elimina_carrito"
+                            android:layout_width="1dp"
+                            android:layout_weight="4"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:text="x" android:onClick="eliminarCarritoUsuario" />
+
+
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_carrito_subtotal_prod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subtotal: {{subtotal_prod}} MXN"
+            android:layout_marginVertical="10dp"
+            android:textAlignment="textEnd"
+            android:fontFamily="monospace"
+            android:textColor="@color/colorPrimaryLight"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+    <!-- Termina Item producto -->
+
+    <LinearLayout
+        android:id="@+id/ll_carrito_total_prod"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:elevation="10dp">
+
+        <TextView
+            android:id="@+id/tv_carrito_total_prod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total: {{subtotal_prod}} MXN"
+            android:layout_marginVertical="10dp"
+            android:textAlignment="textEnd"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:textColor="@color/colorPrimaryLightVariant"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

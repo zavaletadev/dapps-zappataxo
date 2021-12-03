@@ -4,6 +4,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
@@ -70,6 +72,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
+
+        NavController navController = Navigation.findNavController(
+                MainActivity.this,
+                R.id.nav_host_fragment_content_main
+        );
+        navController.navigateUp();
+        navController.navigate(R.id.nav_cuenta_carrito);
 
         if (id == R.id.action_salir) {
             salir();
@@ -153,4 +162,24 @@ public class MainActivity extends AppCompatActivity {
         );
         navController.navigate(R.id.nav_ejemplodetalle, datos);
     }
+
+
+    public void clickDetalleOriginal(View v) {
+
+        TextView tvProductoId = v.findViewById(R.id.tv_producto_id);
+        Log.d("tvProductoId", tvProductoId.getText().toString());
+        NavController navController = Navigation.findNavController(
+                MainActivity.this,
+                R.id.nav_host_fragment_content_main
+        );
+        navController.navigateUp();
+
+        Bundle datos = new Bundle();
+        datos.putString("id", tvProductoId.getText().toString());
+
+        Log.d("aqui", "en la versión original");
+
+        navController.navigate(R.id.nav_detalle_original, datos);
+    }
+
 }
