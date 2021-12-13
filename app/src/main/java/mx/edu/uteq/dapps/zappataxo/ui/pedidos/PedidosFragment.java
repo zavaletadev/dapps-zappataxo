@@ -1,65 +1,179 @@
 package mx.edu.uteq.dapps.zappataxo.ui.pedidos;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import mx.edu.uteq.dapps.zappataxo.R;
+import mx.edu.uteq.dapps.zappataxo.databinding.FragmentPedidosBinding;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PedidosFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class PedidosFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public PedidosFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PedidosFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static PedidosFragment newInstance(String param1, String param2) {
-        PedidosFragment fragment = new PedidosFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private FragmentPedidosBinding binding;
+    private ArrayAdapter<String> adaptador;
+    private List<String> datos;
+    private RequestQueue conexionServ;
+    private StringRequest peticionServ;
+    private SharedPreferences sharedPreferences;
+    private String md5Id;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pedidos, container, false);
+
+        binding = FragmentPedidosBinding.inflate(inflater, container, false);
+
+        /*
+        Invocamos el archivo de datos de la aplicacion
+        con el nombre del espacio de trabajo
+         */
+        sharedPreferences = getActivity().getSharedPreferences(
+                "zappataxo",
+                Context.MODE_PRIVATE
+        );
+        md5Id = sharedPreferences.getString("id", null);
+
+        /*Inicializamos la lista de datos VACÍA*/
+        datos = new ArrayList<>();
+
+        /*Inicializamos el adaptador por defecto con el diseño de Android*/
+        adaptador = new ArrayAdapter<>(
+                getActivity(),
+                android.R.layout.simple_list_item_1,
+                datos
+        );
+
+        /*Indicamos el adaptador para el ListView*/
+        binding.lvPedidos.setAdapter(adaptador);
+
+        conexionServ = Volley.newRequestQueue(getActivity());
+
+        //Al cargar el fragmento ponemos a cargar el Swipe
+        binding.srlPedidos.post(new Runnable() {
+            @Override
+            public void run() {
+                binding.srlPedidos.setRefreshing(true);
+                cargaCompras();
+            }
+        });
+
+        //Evento Swipe
+        binding.srlPedidos.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                cargaCompras();
+            }
+        });
+
+        /*
+        Evento click de los items del listview
+         */
+        binding.lvPedidos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                Log.d("posElem", position+"");
+
+                /*
+                Tomar el id de la venta par amostrar otra ventana
+                con su detalle
+                 */
+
+            }
+        });
+
+        return binding.getRoot();
+    }
+
+    public void cargaCompras() {
+        peticionServ = new StringRequest(
+                Request.Method.POST,
+                "https://zavaletazea.dev/labs/awos-dapps-zappataxo/api/compra/mis_compras",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("responsePEdidos", response);
+
+                        try {
+                            JSONObject objRespuesta = new JSONObject(response);
+
+                            if (objRespuesta.getInt("code") == 200) {
+                                /*
+                                Tomamos la lista de compras y la agregamos a la lista
+                                de datos
+                                 */
+                                JSONArray comprasJSON = objRespuesta.getJSONArray("data");
+
+                                //limpiamos la lista de datos
+                                datos.clear();
+                                //Recorremos el arreglo de compras en JSON
+                                for(int i = 0; i < comprasJSON.length(); i++) {
+                                    JSONObject compra = comprasJSON.getJSONObject(i);
+                                    datos.add(
+                                            compra.getString("fecha_venta") + " " +
+                                            "  $" + compra.getString("total_venta") + " MXN" +
+                                            "  " + compra.getString("numero_prod") + " productos"
+                                    );
+                                }
+
+                                //Actualizamos los datos de la lista
+                                adaptador.notifyDataSetChanged();
+                                binding.srlPedidos.setRefreshing(false);
+                            }
+
+                            else {
+                                binding.srlPedidos.setRefreshing(false);
+                            }
+                        }
+
+                        catch(Exception e) {
+                            binding.srlPedidos.setRefreshing(false);
+                            Log.e("excPedidos", e.getMessage());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        binding.srlPedidos.setRefreshing(false);
+                        Log.e("errorPedidos", error.toString());
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parametros = new HashMap<>();
+                parametros.put("id", md5Id);
+                return parametros;
+            }
+        };
+        conexionServ.add(peticionServ);
     }
 }

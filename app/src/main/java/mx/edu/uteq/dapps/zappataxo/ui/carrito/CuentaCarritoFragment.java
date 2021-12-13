@@ -104,6 +104,8 @@ public class CuentaCarritoFragment extends Fragment {
                                         getActivity(),
                                         productosCarrito,
                                         objRespuesta.getString("total"),
+                                        objRespuesta.getString("total_num"),
+
                                         md5IdUsuario
                                 );
 

@@ -35,15 +35,17 @@ public class CarritoAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private JSONArray datos;
     private String total;
+    private String totalNumerico;
     private String md5IdUsuario;
     private RequestQueue conexionServ;
     private StringRequest peticionServ;
     private int cantidadProd;
 
-    public CarritoAdapter(Context contexto, JSONArray datos, String total, String md5IdUsuario) {
+    public CarritoAdapter(Context contexto, JSONArray datos, String total, String totalNumerico, String md5IdUsuario) {
         this.contexto = contexto;
         this.datos = datos;
         this.total = total;
+        this.totalNumerico = totalNumerico;
         this.md5IdUsuario = md5IdUsuario;
         inflater = LayoutInflater.from(contexto);
     }
@@ -122,17 +124,19 @@ public class CarritoAdapter extends BaseAdapter {
             a partir del id del carrito
             del carrito, mostramos el total
              */
-            Log.d("datos.lenght -1", (datos.length() -1)+"");
-            Log.d("position", position+"");
             LinearLayout llCarritoTotalProd = convertView.findViewById(R.id.ll_carrito_total_prod);
+            LinearLayout llCarritoPagar = convertView.findViewById(R.id.ll_carrito_pagar);
 
             TextView tvCarritoTotalProd = convertView.findViewById(
                     R.id.tv_carrito_total_prod
             );
 
+            //Mostramos el total y el boton de pago solo al final, en el último elemento
+            // de la lista
             if (datos.length() - 1 == position) {
                 llCarritoTotalProd.setVisibility(View.VISIBLE);
-                tvCarritoTotalProd.setText(total);
+                llCarritoPagar.setVisibility(View.VISIBLE);
+                tvCarritoTotalProd.setText("$" + total + " MXN");
             }
 
 
@@ -170,8 +174,6 @@ public class CarritoAdapter extends BaseAdapter {
                                             datos = objRespuesta.getJSONArray("data");
                                             //Actualizamos al adaptador
                                             notifyDataSetChanged();
-
-                                            Log.d("TOTAL", objRespuesta.getString("total"));
 
                                             //Actualizamos el total
                                             total = objRespuesta.getString("total");
@@ -258,13 +260,13 @@ public class CarritoAdapter extends BaseAdapter {
                                             //Actualizamos al adaptador
                                             notifyDataSetChanged();
 
-                                            Log.d("TOTAL", objRespuesta.getString("total"));
+
 
                                             //Actualizamos el total
                                             total = objRespuesta.getString("total");
                                             tvCarritoTotalProd.setText(
-                                                    "Total: " +
-                                                    total
+                                                    "Total: $" +
+                                                    total + "MXN"
                                             );
                                         }
 
@@ -298,7 +300,71 @@ public class CarritoAdapter extends BaseAdapter {
                     };
                     conexionServ.add(peticionServ);
                 } //click
+            }); //Click Listener
+
+
+            Button btnPagar = convertView.findViewById(R.id.btn_pagar);
+
+            btnPagar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ProgressDialog progress = new ProgressDialog(contexto);
+                    progress.setTitle("Finalizando compra");
+                    progress.setMessage("Por favor espera...");
+                    progress.setCancelable(false);
+                    progress.setIndeterminate(true);
+                    progress.show();
+
+                    /*
+                    Datos para enviar al servicio
+                    id (md5)
+                    total_venta
+                     */
+                    try {
+                        Log.d("id en md5", md5IdUsuario);
+                        Log.d("total_venta", total);
+                        /*Lista de productos del carrito*/
+                        Log.d("arr_productos", datos.toString());
+
+                        conexionServ = Volley.newRequestQueue(contexto);
+                        peticionServ = new StringRequest(
+                                Request.Method.POST,
+                                "https://zavaletazea.dev/labs/awos-dapps-zappataxo/api/compra/realiza_compra",
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        progress.dismiss();
+                                        Log.d("respCompra", response);
+                                    }
+                                }, new Response.ErrorListener() {
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            progress.dismiss();
+                                            Log.d("respCompra", error.toString());
+                                        }
+                                }
+                        )
+                        {
+                            @Override
+                            protected Map<String, String> getParams() throws AuthFailureError {
+                                Map<String, String> parametros = new HashMap<>();
+                                parametros.put("id", md5IdUsuario);
+                                parametros.put("total_venta", totalNumerico);
+                                parametros.put("arr_productos", datos.toString());
+
+                                return parametros;
+                            }
+                        };
+                        conexionServ.add(peticionServ);
+                    }
+
+                    catch(Exception e) {
+                        Log.e("errorArrProd", e.getMessage());
+                    }
+
+                }
             });
+
 
         } // try
 

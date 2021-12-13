@@ -206,5 +206,26 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ll_carrito_pagar"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:elevation="10dp"
+        android:layout_marginBottom="30dp">
+
+        <Button
+            android:id="@+id/btn_pagar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:text="Pagar"/>
+
+    </LinearLayout>
+
 
 </LinearLayout>
